@@ -1,0 +1,5 @@
+[versions]
+[libraries]
+[plugins]
+defaults = { id = "io.github.sgtsilvio.gradle.defaults", version = "0.2.0" }
+githubRelease = { id = "com.github.breadmoirai.github-release", version = "2.4.1" }

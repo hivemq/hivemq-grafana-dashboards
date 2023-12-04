@@ -1,0 +1,17 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Publish
+        run: ./gradlew githubRelease
+        env:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
