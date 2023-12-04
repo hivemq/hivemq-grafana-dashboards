@@ -25,7 +25,7 @@ val combinedDashboardFile = File("hivemq-grafana-dashboard-combined.json")
 val createPrometheusDashboard by tasks.registering {
     group = "dashboard"
     inputs.file(combinedDashboardFile)
-    val outputFile = "hivemq-grafana-dashboard-prometheus-${project.version}.json"
+    val outputFile = layout.buildDirectory.dir("dashboards").get().file("hivemq-grafana-dashboard-prometheus-${project.version}.json")
     outputs.file(outputFile)
     doLast {
         val gson = GsonBuilder().setPrettyPrinting().create()
@@ -52,15 +52,13 @@ val createPrometheusDashboard by tasks.registering {
         // set the version
         dashboard.asMap()["version"] = JsonPrimitive(project.version.toString())
 
-        val target = layout.buildDirectory.dir("dashboards").get()
-        target.asFile.mkdirs()
-        target.file(outputFile).asFile.writeText(gson.toJson(dashboard))
+        outputFile.asFile.writeText(gson.toJson(dashboard))
     }
 }
 
 val createInfluxDbDashboard by tasks.registering {
     group = "dashboard"
-    val outputFile = "hivemq-grafana-dashboard-influxdb-${project.version}.json"
+    val outputFile = layout.buildDirectory.dir("dashboards").get().file("hivemq-influxdb-dashboard-prometheus-${project.version}.json")
     inputs.file(combinedDashboardFile)
     outputs.file(outputFile)
     doLast {
@@ -88,13 +86,12 @@ val createInfluxDbDashboard by tasks.registering {
         // set the version
         dashboard.asMap()["version"] = JsonPrimitive(project.version.toString())
 
-        val target = layout.buildDirectory.dir("dashboards").get()
-        target.asFile.mkdirs()
-        target.file(outputFile).asFile.writeText(gson.toJson(dashboard))
+        outputFile.asFile.writeText(gson.toJson(dashboard))
     }
 }
 
 githubRelease {
+    dryRun(true)
     token(System.getenv("githubToken"))
     releaseAssets(
         createInfluxDbDashboard,
