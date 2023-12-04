@@ -100,7 +100,7 @@ githubRelease {
         createInfluxDbDashboard,
         createPrometheusDashboard
     )
-    allowUploadToExisting.set(true)
+    allowUploadToExisting(true)
     releaseName(project.version.toString())
     tagName(project.version.toString())
     targetCommitish("master")
