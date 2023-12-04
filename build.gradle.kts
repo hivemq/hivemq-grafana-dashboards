@@ -91,7 +91,6 @@ val createInfluxDbDashboard by tasks.registering {
 }
 
 githubRelease {
-    dryRun(true)
     token(System.getenv("githubToken"))
     releaseAssets(
         createInfluxDbDashboard,
