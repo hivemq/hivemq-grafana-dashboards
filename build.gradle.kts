@@ -58,7 +58,7 @@ val createPrometheusDashboard by tasks.registering {
 
 val createInfluxDbDashboard by tasks.registering {
     group = "dashboard"
-    val outputFile = layout.buildDirectory.dir("dashboards").get().file("hivemq-influxdb-dashboard-prometheus-${project.version}.json")
+    val outputFile = layout.buildDirectory.dir("dashboards").get().file("hivemq-grafana-dashboard-influxdb-${project.version}.json")
     inputs.file(combinedDashboardFile)
     outputs.file(outputFile)
     doLast {
