@@ -104,4 +104,5 @@ githubRelease {
     releaseName(project.version.toString())
     tagName(project.version.toString())
     targetCommitish("master")
+    owner("hivemq")
 }
