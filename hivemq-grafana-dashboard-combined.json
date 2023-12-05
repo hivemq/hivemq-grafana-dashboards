@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 51,
+  "id": 55,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -3893,7 +3893,7 @@
         "x": 0,
         "y": 71
       },
-      "id": 44,
+      "id": 47,
       "panels": [],
       "title": "HiveMQ Postgresql Extension",
       "type": "row"
@@ -3960,7 +3960,7 @@
         "x": 0,
         "y": 72
       },
-      "id": 45,
+      "id": 48,
       "interval": "${intervalSeconds}s",
       "options": {
         "legend": {
@@ -4063,7 +4063,7 @@
         "x": 6,
         "y": 72
       },
-      "id": 46,
+      "id": 49,
       "interval": "${intervalSeconds}s",
       "options": {
         "legend": {
@@ -4098,6 +4098,225 @@
           },
           "hide": false,
           "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.postgresql\\.mqtt-to-postgresql(.+)failed\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.postgresql.mqtt-to-postgresql.total.failed.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "MQTT to MySQL failed/s",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 79
+      },
+      "id": 50,
+      "panels": [],
+      "title": "HiveMQ MySQL Extension",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 80
+      },
+      "id": 51,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_success_count\", __name__!=\"com_hivemq_extensions_mysql_mqtt_to_mysql_total_success_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_success_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)success\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.mysql.mqtt-to-mysql.total.success.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "MQTT to MySQL success/s",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 80
+      },
+      "id": 52,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_failed_count\", __name__!=\"com_hivemq_extensions_mysql_mqtt_to_mysql_total_failed_count\"}, \"interface\", \"$1\", \"__name__\", \"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_failed_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)failed\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.mysql.mqtt-to-mysql.total.failed.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
