@@ -3779,7 +3779,7 @@
           "refId": "B"
         }
       ],
-      "title": "MQTT to S3 success/s",
+      "title": "MQTT to MongoDB success/s",
       "type": "timeseries"
     },
     {
@@ -3882,7 +3882,7 @@
           "refId": "B"
         }
       ],
-      "title": "MQTT to S3 failed/s",
+      "title": "MQTT to MongoDB failed/s",
       "type": "timeseries"
     }
   ],
