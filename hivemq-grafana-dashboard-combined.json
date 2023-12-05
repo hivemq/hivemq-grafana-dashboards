@@ -3457,7 +3457,7 @@
       },
       "id": 41,
       "panels": [],
-      "title": "HiveMQ Data Lake Extension",
+      "title": "HiveMQ Enterprise Data Lake Extension",
       "type": "row"
     },
     {
@@ -3676,7 +3676,7 @@
       },
       "id": 44,
       "panels": [],
-      "title": "HiveMQ MongoDB Extension",
+      "title": "HiveMQ Enterprise Extension for MongoDB",
       "type": "row"
     },
     {
@@ -3895,7 +3895,7 @@
       },
       "id": 47,
       "panels": [],
-      "title": "HiveMQ Postgresql Extension",
+      "title": "HiveMQ Enteprise Extension for Postgresql",
       "type": "row"
     },
     {
@@ -4114,7 +4114,7 @@
       },
       "id": 50,
       "panels": [],
-      "title": "HiveMQ MySQL Extension",
+      "title": "HiveMQ Enterprise Extension for MySQL",
       "type": "row"
     },
     {
