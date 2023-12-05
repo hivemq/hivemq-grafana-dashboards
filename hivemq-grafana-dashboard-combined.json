@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 51,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -206,7 +207,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 6,
+        "w": 3,
         "x": 6,
         "y": 1
       },
@@ -335,8 +336,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 6,
-        "x": 12,
+        "w": 3,
+        "x": 9,
         "y": 1
       },
       "id": 9,
@@ -487,7 +488,7 @@
       "gridPos": {
         "h": 7,
         "w": 6,
-        "x": 18,
+        "x": 12,
         "y": 1
       },
       "id": 3,
@@ -528,6 +529,112 @@
         }
       ],
       "title": "Current MQTT Connections",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 38,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "com_hivemq_cluster_nodes_count",
+          "instant": false,
+          "legendFormat": "{{instance}} connections",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.cluster.nodes.count\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
+          "refId": "B"
+        }
+      ],
+      "title": "Cluster Nodes",
       "type": "timeseries"
     },
     {
@@ -3348,6 +3455,125 @@
       ],
       "title": "outgoing PINGRESP/s",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 39,
+      "panels": [],
+      "title": "HiveMQ Cluster",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 48
+      },
+      "id": 40,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "com_hivemq_cluster_nodes_count",
+          "instant": false,
+          "legendFormat": "{{instance}} connections",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.cluster.nodes.count\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
+          "refId": "B"
+        }
+      ],
+      "title": "Cluster Nodes",
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
@@ -3442,6 +3668,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "HiveMQ Platform (Prometheus + InfluxDB)",
-  "version": 0,
+  "uid": "c750b2ac-8bf9-4a0b-af02-0e2203d79cb0",
+  "version": 1,
   "weekStart": ""
 }
