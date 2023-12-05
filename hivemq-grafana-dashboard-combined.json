@@ -123,7 +123,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.cpu.total.total\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.cpu.total.total\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
           "refId": "A"
         },
         {
@@ -231,7 +231,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.memory.total\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.memory.total\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
           "refId": "A"
         },
         {
@@ -240,7 +240,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.memory.available\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.system.os.global.memory.available\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
           "refId": "B"
         },
         {
@@ -399,7 +399,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.max\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.max\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
           "refId": "D"
         },
         {
@@ -408,7 +408,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.init\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.init\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
           "refId": "E"
         },
         {
@@ -417,7 +417,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.used\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.used\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
           "refId": "F"
         }
       ],
@@ -523,7 +523,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.networking.connections.current\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.networking.connections.current\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\", \"_field\"])",
           "refId": "B"
         }
       ],
@@ -645,7 +645,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.network-interface(.+)bytes-received/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.network-interface(.+)bytes-received/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -754,7 +754,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.network-interface(.+)bytes-sent/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.network-interface(.+)bytes-sent/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -862,7 +862,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.disks(.+)read\\.bytes/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.disks(.+)read\\.bytes/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -971,7 +971,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.disks(.+)write\\.bytes/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.system\\.os\\.disks(.+)write\\.bytes/)\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -1090,7 +1090,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.queued.count\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.queued.count\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -1196,7 +1196,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.sessions.overall.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.sessions.overall.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -1302,7 +1302,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.retained.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.retained.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -1408,7 +1408,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.subscriptions.overall.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.subscriptions.overall.current\")\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -1527,7 +1527,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.publish.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.publish.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -1633,7 +1633,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.publish.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.publish.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -1739,7 +1739,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.puback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.puback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -1845,7 +1845,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.puback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.puback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -1951,7 +1951,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubrec.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubrec.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2057,7 +2057,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubrec.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubrec.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2163,7 +2163,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubrel.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubrel.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2269,7 +2269,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubrel.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubrel.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2375,7 +2375,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubcomp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pubcomp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2481,7 +2481,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubcomp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pubcomp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2600,7 +2600,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.connect.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.connect.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2706,7 +2706,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.connack.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.connack.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2812,7 +2812,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.subscribe.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.subscribe.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -2918,7 +2918,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.suback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.suback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -3024,7 +3024,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.unsubscribe.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.unsubscribe.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -3130,7 +3130,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.unsuback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.unsuback.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -3236,7 +3236,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pingreq.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.incoming.pingreq.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
@@ -3342,7 +3342,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: "v.defaultBucket")\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pingresp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.messages.outgoing.pingresp.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "B"
         }
       ],
