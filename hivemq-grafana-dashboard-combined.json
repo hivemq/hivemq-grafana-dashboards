@@ -5904,6 +5904,431 @@
       ],
       "title": "Amazon Kinesis to MQTT received/s",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 124
+      },
+      "id": 70,
+      "panels": [],
+      "title": "HiveMQ Enterprise Bridge Extension",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 125
+      },
+      "id": 73,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_bridge_extension_(.+)_publish_meter_total\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_bridge_extension_(.+)_publish_meter_total\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.bridge-extension\\.(.+)\\.publish\\.meter/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "outgoing PUBLISH/s",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 125
+      },
+      "id": 75,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_bridge_extension_(.+)_publish_failed_meter_total\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_bridge_extension_(.+)_publish_failed_meter_total\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.bridge-extension\\.(.+)\\.publish-failed\\.meter/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "incoming PUBLISH failed/s",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 125
+      },
+      "id": 74,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_bridge_extension_(.+)_subscribed_message_meter_total\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_bridge_extension_(.+)_subscribed_message_meter_total\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.bridge-extension\\.(.+)\\.subscribed-message\\.meter/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "incoming PUBLISH/s",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 125
+      },
+      "id": 76,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(label_replace({__name__=~\"com_hivemq_bridge_extension_(.+)_subscribed_message_failed_meter_total\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_bridge_extension_(.+)_subscribed_message_failed_meter_total\")[${intervalSeconds}s:${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} {{route}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.bridge-extension\\.(.+)\\.subscribed-message-failed\\.meter/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        }
+      ],
+      "title": "incoming PUBLISH failed/s",
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
