@@ -6435,15 +6435,6 @@
         },
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "${InfluxDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.topic-mapping\\.(.+)\\.success\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
-          "refId": "B"
-        },
-        {
-          "datasource": {
             "type": "prometheus",
             "uid": "${Prometheus}"
           },
@@ -6453,6 +6444,15 @@
           "instant": false,
           "legendFormat": "{{instance}} {{transformer}} success.count",
           "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.topic-mapping\\.(.+)\\.success\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "C"
         },
         {
@@ -6685,15 +6685,6 @@
         },
         {
           "datasource": {
-            "type": "influxdb",
-            "uid": "${InfluxDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.kafka-to-mqtt-mapping\\.(.+)\\.polled-record\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
-          "refId": "B"
-        },
-        {
-          "datasource": {
             "type": "prometheus",
             "uid": "${Prometheus}"
           },
@@ -6703,6 +6694,15 @@
           "instant": false,
           "legendFormat": "{{instance}} {{transformer}} polled-record",
           "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.kafka-to-mqtt-mapping\\.(.+)\\.polled-record\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
           "refId": "C"
         },
         {
