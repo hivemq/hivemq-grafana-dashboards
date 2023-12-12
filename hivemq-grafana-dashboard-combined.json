@@ -3541,7 +3541,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.level\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.level\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -3644,7 +3644,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.clients.average-credits\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.clients.average-credits\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -3747,7 +3747,7 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.credits.per-tick\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.credits.per-tick\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
@@ -3850,11 +3850,421 @@
             "uid": "${InfluxDB}"
           },
           "hide": false,
-          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.clients.backpressure-active\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.overload-protection.clients.backpressure-active\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)",
           "refId": "B"
         }
       ],
       "title": "Overload Protection backpressure active",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 101,
+      "panels": [],
+      "title": "JVM",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 56
+      },
+      "id": 102,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "com_hivemq_jvm_memory_heap_max",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} heap.max",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "com_hivemq_jvm_memory_heap_init",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} heap.init",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "com_hivemq_jvm_memory_heap_used",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{instance}} heap.used",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.max\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.init\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.memory.heap.used\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+          "refId": "F"
+        }
+      ],
+      "title": "Heap",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 56
+      },
+      "id": 104,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(com_hivemq_jvm_garbage_collector_G1_Old_Generation_count[${intervalSeconds}s])",
+          "instant": false,
+          "legendFormat": "{{job}} old.gen.count",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(com_hivemq_jvm_garbage_collector_G1_Young_Generation_count[${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{job}} young.gen.count",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.garbage-collector.G1-Old-Generation.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.garbage-collector.G1-Young-Generation.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "D"
+        }
+      ],
+      "title": "GC/s",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dtdurationms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 56
+      },
+      "id": 105,
+      "interval": "${intervalSeconds}s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(com_hivemq_jvm_garbage_collector_G1_Old_Generation_time[${intervalSeconds}s])",
+          "instant": false,
+          "legendFormat": "{{job}} old.gen.time",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${Prometheus}"
+          },
+          "editorMode": "code",
+          "expr": "rate(com_hivemq_jvm_garbage_collector_G1_Young_Generation_time[${intervalSeconds}s])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{job}} young.gen.time",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.garbage-collector.G1-Old-Generation.time\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${InfluxDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.jvm.garbage-collector.G1-Young-Generation.time\")\n    |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+          "refId": "D"
+        }
+      ],
+      "title": "GC times",
       "type": "timeseries"
     },
     {
@@ -3863,7 +4273,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 63
       },
       "id": 56,
       "panels": [
@@ -3915,8 +4325,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4019,8 +4428,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4123,8 +4531,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4227,8 +4634,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4331,8 +4737,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4435,8 +4840,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4538,8 +4942,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4642,8 +5045,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4746,8 +5148,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4850,8 +5251,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4954,8 +5354,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -5058,8 +5457,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -5162,8 +5560,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -5227,7 +5624,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 64
       },
       "id": 70,
       "panels": [
@@ -5649,7 +6046,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 65
       },
       "id": 41,
       "panels": [
@@ -5867,7 +6264,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 66
       },
       "id": 82,
       "panels": [
@@ -7309,7 +7706,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "id": 77,
       "panels": [
@@ -7819,7 +8216,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 68
       },
       "id": 44,
       "panels": [
@@ -8037,7 +8434,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 69
       },
       "id": 50,
       "panels": [
@@ -8255,7 +8652,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 70
       },
       "id": 47,
       "panels": [
@@ -8473,7 +8870,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 71
       },
       "id": 53,
       "panels": [
@@ -8728,7 +9125,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "30",
           "value": "30"
         },
