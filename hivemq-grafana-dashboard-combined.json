@@ -6129,6 +6129,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to S3 messages that the extension successfully forwards for each mqtt-to-s3-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6179,7 +6180,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 56
+            "y": 66
           },
           "id": 42,
           "interval": "${intervalSeconds}s",
@@ -6227,6 +6228,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to S3 messages that the extension cannot successfully forward for each mqtt-to-s3-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6277,7 +6279,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 56
+            "y": 66
           },
           "id": 43,
           "interval": "${intervalSeconds}s",
