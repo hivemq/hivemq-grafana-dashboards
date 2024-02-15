@@ -7862,127 +7862,6 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of MQTT to Kafka messages the extension cannot successfully forward for each mqtt-to-kafka-mapping/mqtt-to-kafka-transformer, per second.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "axisSoftMin": 0,
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "linear",
-                "lineWidth": 3,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "normal"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": []
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 6,
-            "y": 68
-          },
-          "id": 83,
-          "interval": "${intervalSeconds}s",
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": false
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${Prometheus}"
-              },
-              "editorMode": "code",
-              "expr": "rate(label_replace({__name__=~\"kafka_extension_topic_mapping_(.+)_success_count\"}, \"mapping\", \"$1\", \"__name__\", \"kafka_extension_topic_mapping_(.+)_success_count\")[${intervalSeconds}s:${intervalSeconds}s])",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "{{instance}} {{mapping}} success.count",
-              "range": true,
-              "refId": "A"
-            },
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${Prometheus}"
-              },
-              "editorMode": "code",
-              "expr": "rate(label_replace({__name__=~\"kafka_extension_transformer_(.+)_success_count\"}, \"transformer\", \"$1\", \"__name__\", \"kafka_extension_transformer_(.+)_success_count\")[${intervalSeconds}s:${intervalSeconds}s])",
-              "hide": false,
-              "instant": false,
-              "legendFormat": "{{instance}} {{transformer}} success.count",
-              "range": true,
-              "refId": "B"
-            },
-            {
-              "datasource": {
-                "type": "influxdb",
-                "uid": "${InfluxDB}"
-              },
-              "hide": false,
-              "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.topic-mapping\\.(.+)\\.success\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
-              "refId": "C"
-            },
-            {
-              "datasource": {
-                "type": "influxdb",
-                "uid": "${InfluxDB}"
-              },
-              "hide": false,
-              "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /kafka-extension\\.transformer\\.(.+)\\.success\\.count/)\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
-              "refId": "D"
-            }
-          ],
-          "title": "MQTT to Kafka success/s",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "datasource",
-            "uid": "-- Mixed --"
-          },
           "description": "The number of Kafka records the extension polls for each kafka-to-mqtt-mapping/kafka-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
@@ -8033,7 +7912,7 @@
           "gridPos": {
             "h": 7,
             "w": 6,
-            "x": 12,
+            "x": 6,
             "y": 68
           },
           "id": 80,
@@ -8154,7 +8033,7 @@
           "gridPos": {
             "h": 7,
             "w": 6,
-            "x": 18,
+            "x": 12,
             "y": 68
           },
           "id": 81,
