@@ -405,7 +405,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "The current total number of active MQTT connections.",
+      "description": "The current number of active MQTT connections.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -614,7 +614,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
+      "description": "The amount of data received for each network interface. Measured in bytes per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -714,7 +714,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
+      "description": "The amount of data sent for each network interface. Measured in bytes per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -814,7 +814,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
+      "description": "The amount of data read for each disk. Measured in bytes per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -913,7 +913,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
+      "description": "The amount of data written for each disk. Measured in bytes per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1013,7 +1013,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "",
+      "description": "The current number of disk I/O tasks in the queue for each persistence executor.",
       "fieldConfig": {
         "defaults": {
           "color": {
