@@ -5719,6 +5719,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The rate of PUBLISH messages the extension forwards to remote brokers for each bridge, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5769,7 +5770,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 125
+            "y": 65
           },
           "id": 73,
           "interval": "${intervalSeconds}s",
@@ -5817,6 +5818,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The rate of PUBLISH messages the extension forwards to remote brokers for each bridge, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5867,7 +5869,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 125
+            "y": 65
           },
           "id": 75,
           "interval": "${intervalSeconds}s",
@@ -5915,6 +5917,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The rate at which the extension receives SUB mode messages from the remote broker for each bridge, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5965,7 +5968,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 125
+            "y": 65
           },
           "id": 74,
           "interval": "${intervalSeconds}s",
@@ -6013,6 +6016,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The rate at which the extension is unable to receive SUB mode messages from the remote broker for each bridge, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6063,7 +6067,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 125
+            "y": 65
           },
           "id": 76,
           "interval": "${intervalSeconds}s",
