@@ -3517,6 +3517,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of nodes in the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3614,6 +3615,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "Holds the current level of overload protection.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3711,6 +3713,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The average number of available credits between all clients.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3809,6 +3812,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The average number of credits each client receives per tick.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3907,6 +3911,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of clients for which backpressure is applied by overload protection.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4018,6 +4023,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "- *used*: The amount of used memory.\n- *max*: The maximum amount of memory that can be used for memory management.\n- *init*: The amount of memory that the JVM initially requests from the operating system for memory management.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4161,6 +4167,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "- *old-gen*: The number of old generation garbage collections per second.\n- *young-gen*: The number of young generation garbage collections per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4280,6 +4287,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "- *old-gen*: The approximate accumulated elapsed time for old generation garbage collections.\n- *young-gen*: The approximate accumulated elapsed time for young generation garbage collections.",
       "fieldConfig": {
         "defaults": {
           "color": {
