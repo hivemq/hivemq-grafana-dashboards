@@ -1727,6 +1727,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PUBLISH messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1824,6 +1825,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PUBLISH messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1921,6 +1923,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PUBACK messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2018,6 +2021,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PUBACK messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2115,6 +2119,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PUBREC messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2212,6 +2217,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PUBREC messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2309,6 +2315,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PUBREL messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2406,6 +2413,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PUBREL messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2503,6 +2511,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PUBCOMP messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2592,7 +2601,7 @@
           "refId": "B"
         }
       ],
-      "title": "incoming PUBACK/s",
+      "title": "incoming PUBCOMP/s",
       "type": "timeseries"
     },
     {
@@ -2600,6 +2609,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PUBCOMP messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2710,6 +2720,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming CONNECT messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2807,6 +2818,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing CONACK messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2904,6 +2916,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming SUBSCRIBE messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3001,6 +3014,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing SUBACK messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3098,6 +3112,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming UNSUBSCRIBE messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3195,6 +3210,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing UNSUBACK messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3292,6 +3308,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of incoming PINGRESP messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3389,6 +3406,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of outgoing PINGRESP messages per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
