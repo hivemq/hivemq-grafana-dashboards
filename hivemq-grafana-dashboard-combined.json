@@ -7741,6 +7741,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to Kafka messages the extension successfully forwards for each mqtt-to-kafka-mapping/mqtt-to-kafka-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7791,7 +7792,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 133
+            "y": 68
           },
           "id": 78,
           "interval": "${intervalSeconds}s",
@@ -7861,6 +7862,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to Kafka messages the extension cannot successfully forward for each mqtt-to-kafka-mapping/mqtt-to-kafka-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7911,7 +7913,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 133
+            "y": 68
           },
           "id": 83,
           "interval": "${intervalSeconds}s",
@@ -7981,6 +7983,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of Kafka records the extension polls for each kafka-to-mqtt-mapping/kafka-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -8031,7 +8034,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 133
+            "y": 68
           },
           "id": 80,
           "interval": "${intervalSeconds}s",
@@ -8101,6 +8104,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of messages the extension publishes for each kafka-to-mqtt-mapping/kafka-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -8151,7 +8155,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 133
+            "y": 68
           },
           "id": 81,
           "interval": "${intervalSeconds}s",
