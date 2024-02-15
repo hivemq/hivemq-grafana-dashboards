@@ -82,11 +82,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "percent"
         },
@@ -186,11 +182,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "decbytes"
         },
@@ -311,11 +303,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "decbytes"
         },
@@ -459,11 +447,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -561,11 +545,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -676,11 +656,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "bytes"
         },
@@ -780,11 +756,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "bytes"
         },
@@ -884,11 +856,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "bytes"
         },
@@ -987,11 +955,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "bytes"
         },
@@ -1091,11 +1055,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1206,11 +1166,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1307,11 +1263,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1408,11 +1360,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1509,11 +1457,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1610,11 +1554,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1711,11 +1651,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1826,11 +1762,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -1927,11 +1859,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2028,11 +1956,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2129,11 +2053,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2230,11 +2150,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2331,11 +2247,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2432,11 +2344,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2533,11 +2441,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2634,11 +2538,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2735,11 +2635,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2849,11 +2745,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -2950,11 +2842,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3051,11 +2939,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3152,11 +3036,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3253,11 +3133,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3354,11 +3230,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3455,11 +3327,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3556,11 +3424,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3670,11 +3534,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3771,11 +3631,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3872,11 +3728,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -3974,11 +3826,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -4076,11 +3924,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -4191,11 +4035,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "decbytes"
         },
@@ -4338,11 +4178,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           }
         },
         "overrides": []
@@ -4461,11 +4297,7 @@
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
+            "steps": []
           },
           "unit": "ms"
         },
@@ -4595,11 +4427,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -4698,11 +4526,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -4801,11 +4625,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -4904,11 +4724,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5007,11 +4823,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5110,11 +4922,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5212,11 +5020,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5315,11 +5119,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5418,11 +5218,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5521,11 +5317,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5624,11 +5416,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5727,11 +5515,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5830,11 +5614,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -5946,11 +5726,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6048,11 +5824,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6150,11 +5922,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6252,11 +6020,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6368,11 +6132,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6470,11 +6230,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6586,11 +6342,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6688,11 +6440,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6790,11 +6538,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6892,11 +6636,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -6994,11 +6734,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7096,11 +6832,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7198,11 +6930,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7300,11 +7028,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7402,11 +7126,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7504,11 +7224,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7606,11 +7322,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7708,11 +7420,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7810,11 +7518,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -7912,11 +7616,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8028,11 +7728,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8152,11 +7848,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8276,11 +7968,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8400,11 +8088,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8538,11 +8222,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8640,11 +8320,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8756,11 +8432,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8858,11 +8530,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -8974,11 +8642,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -9076,11 +8740,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -9192,11 +8852,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
@@ -9294,11 +8950,7 @@
               "mappings": [],
               "thresholds": {
                 "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
+                "steps": []
               }
             },
             "overrides": []
