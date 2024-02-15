@@ -405,7 +405,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "The current number of active MQTT connections.",
+      "description": "The number of active MQTT connections.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -503,7 +503,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "The current number of nodes in the cluster.",
+      "description": "The number of nodes in the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1013,7 +1013,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "The current number of disk I/O tasks in the queue for each persistence executor.",
+      "description": "The number of disk I/O tasks in the queue for each persistence executor.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1125,6 +1125,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of active MQTT connections.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1222,6 +1223,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of stored sessions. These sessions include all sessions, including online and offline clients.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1319,6 +1321,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of subscriptions on the broker.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1416,6 +1419,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of queued messages.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1513,6 +1517,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of retained messages.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1610,6 +1615,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The number of messages dropped for each reason per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
