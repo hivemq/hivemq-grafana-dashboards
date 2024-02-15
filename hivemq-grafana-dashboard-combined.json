@@ -39,6 +39,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "Percentage of total CPU utilisation.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -143,6 +144,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "- *total*: The amount of actual physical memory.\n- *available*: The amount of physical memory currently available.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -267,6 +269,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "- *used*: The amount of used memory.\n- *max*: The maximum amount of memory that can be used for memory management.\n- *init*: The amount of memory that the JVM initially requests from the operating system for memory management.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -414,6 +417,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The current total number of active MQTT connections.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -515,6 +519,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "The current number of nodes in the cluster.",
       "fieldConfig": {
         "defaults": {
           "color": {
