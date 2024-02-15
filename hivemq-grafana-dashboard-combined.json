@@ -6341,6 +6341,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages that the extension successfully forwards for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6391,7 +6392,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 141
+            "y": 95
           },
           "id": 79,
           "interval": "${intervalSeconds}s",
@@ -6439,6 +6440,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages that the extension cannot successfully forward for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6489,7 +6491,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 141
+            "y": 95
           },
           "id": 84,
           "interval": "${intervalSeconds}s",
@@ -6537,6 +6539,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages the extension sends for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6587,7 +6590,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 141
+            "y": 95
           },
           "id": 87,
           "interval": "${intervalSeconds}s",
@@ -6635,6 +6638,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages the extension resends for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6685,7 +6689,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 141
+            "y": 95
           },
           "id": 88,
           "interval": "${intervalSeconds}s",
@@ -6733,6 +6737,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages the extension ignores for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6783,7 +6788,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 148
+            "y": 102
           },
           "id": 89,
           "interval": "${intervalSeconds}s",
@@ -6831,6 +6836,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of MQTT to PubSub messages the extension drops for each mqtt-to-pubsub-mapping/mqtt-to-pubsub-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6881,7 +6887,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 148
+            "y": 102
           },
           "id": 90,
           "interval": "${intervalSeconds}s",
@@ -6929,6 +6935,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension successfully forwards for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6979,7 +6986,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 148
+            "y": 102
           },
           "id": 85,
           "interval": "${intervalSeconds}s",
@@ -7027,6 +7034,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension cannot successfully forward for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7077,7 +7085,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 148
+            "y": 102
           },
           "id": 86,
           "interval": "${intervalSeconds}s",
@@ -7125,6 +7133,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension receives for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7175,7 +7184,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 155
+            "y": 109
           },
           "id": 91,
           "interval": "${intervalSeconds}s",
@@ -7223,6 +7232,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension publishes for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7273,7 +7283,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 155
+            "y": 109
           },
           "id": 92,
           "interval": "${intervalSeconds}s",
@@ -7321,6 +7331,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension resends for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7371,7 +7382,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 155
+            "y": 109
           },
           "id": 93,
           "interval": "${intervalSeconds}s",
@@ -7419,6 +7430,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension ignores for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7469,7 +7481,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 155
+            "y": 109
           },
           "id": 94,
           "interval": "${intervalSeconds}s",
@@ -7517,6 +7529,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that the extension drops for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7567,7 +7580,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 162
+            "y": 116
           },
           "id": 95,
           "interval": "${intervalSeconds}s",
@@ -7615,6 +7628,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
+          "description": "The number of PubSub to MQTT messages that that exceed the configured rate limit for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7665,7 +7679,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 162
+            "y": 116
           },
           "id": 96,
           "interval": "${intervalSeconds}s",
