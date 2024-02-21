@@ -1615,7 +1615,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "The number of messages dropped for each reason per second.",
+      "description": "The number of messages dropped for grouped by reason, per second.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3615,7 +3615,7 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
-      "description": "Holds the current level of overload protection.",
+      "description": "The level of overload protection, from Lowest (1) to CRITICAL (10)",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5507,7 +5507,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of Amazon Kinesis to MQTT messages messages that exceed the configured rate-limit for each kinesis-to-mqtt-route, per second.",
+          "description": "The number of Amazon Kinesis to MQTT messages that exceed the configured rate-limit for each kinesis-to-mqtt-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5606,7 +5606,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of Amazon Kinesis to MQTT messages that the extension drops for each kinesis-to-mqtt-route, per second.",
+          "description": "The number of Amazon Kinesis to MQTT messages that the extension receives for each kinesis-to-mqtt-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -6392,7 +6392,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 95
+            "y": 67
           },
           "id": 79,
           "interval": "${intervalSeconds}s",
@@ -6491,7 +6491,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 95
+            "y": 67
           },
           "id": 84,
           "interval": "${intervalSeconds}s",
@@ -6590,7 +6590,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 95
+            "y": 67
           },
           "id": 87,
           "interval": "${intervalSeconds}s",
@@ -6689,7 +6689,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 95
+            "y": 67
           },
           "id": 88,
           "interval": "${intervalSeconds}s",
@@ -6788,7 +6788,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 102
+            "y": 74
           },
           "id": 89,
           "interval": "${intervalSeconds}s",
@@ -6887,7 +6887,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 102
+            "y": 74
           },
           "id": 90,
           "interval": "${intervalSeconds}s",
@@ -6986,7 +6986,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 102
+            "y": 74
           },
           "id": 85,
           "interval": "${intervalSeconds}s",
@@ -7085,7 +7085,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 102
+            "y": 74
           },
           "id": 86,
           "interval": "${intervalSeconds}s",
@@ -7184,7 +7184,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 109
+            "y": 81
           },
           "id": 91,
           "interval": "${intervalSeconds}s",
@@ -7283,7 +7283,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 109
+            "y": 81
           },
           "id": 92,
           "interval": "${intervalSeconds}s",
@@ -7382,7 +7382,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 109
+            "y": 81
           },
           "id": 93,
           "interval": "${intervalSeconds}s",
@@ -7481,7 +7481,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 109
+            "y": 81
           },
           "id": 94,
           "interval": "${intervalSeconds}s",
@@ -7580,7 +7580,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 116
+            "y": 88
           },
           "id": 95,
           "interval": "${intervalSeconds}s",
@@ -7628,7 +7628,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of PubSub to MQTT messages that that exceed the configured rate limit for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
+          "description": "The number of PubSub to MQTT messages that exceed the configured rate limit for each pubsub-to-mqtt-mapping/pubsub-to-mqtt-transformer, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -7679,7 +7679,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 116
+            "y": 88
           },
           "id": 96,
           "interval": "${intervalSeconds}s",
@@ -7719,7 +7719,7 @@
               "refId": "InfluxDBTransformer"
             }
           ],
-          "title": "PubSub to MQTT dropped/s",
+          "title": "PubSub to MQTT rate limit exceeded/s",
           "type": "timeseries"
         }
       ],
@@ -8118,7 +8118,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of MQTT to MongoDB messages that the extension cannot successfully forward for each mqtt-to-mongodb-route, per second.",
+          "description": "The number of MQTT to MongoDB messages that the extension successfully forwards for each mqtt-to-mongodb-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -8542,7 +8542,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of MQTT to Postgresql messages that the extension successfully forwards for each mqtt-to-postgresql-route, per second.",
+          "description": "The number of MQTT to PostgreSQL messages that the extension successfully forwards for each mqtt-to-postgresql-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -8633,7 +8633,7 @@
               "refId": "B"
             }
           ],
-          "title": "MQTT to Postgresql success/s",
+          "title": "MQTT to PostgreSQL success/s",
           "type": "timeseries"
         },
         {
@@ -8641,7 +8641,7 @@
             "type": "datasource",
             "uid": "-- Mixed --"
           },
-          "description": "The number of MQTT to Postgresql messages that the extension cannot successfully forward for each mqtt-to-postgresql-route, per second.",
+          "description": "The number of MQTT to PostgreSQL messages that the extension cannot successfully forward for each mqtt-to-postgresql-route, per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -8732,11 +8732,11 @@
               "refId": "B"
             }
           ],
-          "title": "MQTT to Postgresql failed/s",
+          "title": "MQTT to PostgreSQL failed/s",
           "type": "timeseries"
         }
       ],
-      "title": "HiveMQ Enterprise Extension for Postgresql",
+      "title": "HiveMQ Enterprise Extension for PostgreSQL",
       "type": "row"
     },
     {
