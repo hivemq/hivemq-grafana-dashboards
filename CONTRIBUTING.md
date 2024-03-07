@@ -11,7 +11,7 @@ Therefore, the following guide will focus on creating your changes using Intelli
 
 Furthermore, the following is needed to make your development efforts as smoothly as possible:
 - Fill out and sign the [Contributor License Agreement](https://www.hivemq.com/downloads/Contributor_License_Agreement.pdf)
-  - Send the signed agreement  to (contributing@hivemq.com) with the subject `CLA for Project: <Project Name>`.
+  - Send the signed agreement  to (contributing@hivemq.com) with the subject `CLA for Project: hivemq-grafana-dashboards`.
   - Please read this document carefully before signing it and keep a copy for your own records
   - Once we've received your signed CLA, you will be added to the list of contributors and our HiveMQ Development Team will review your contributions
   - In case the rights to all intellectual property created by you are maintained by your employer, 
@@ -49,7 +49,7 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
 - Use `./gradlew createDashboards` to create specific dashboards for InfluxDB and Prometheus.
 - Import both specific dashboards in Grafana to review your changes.
 
-## 6. Commit and Push
+## 4. Commit and Push
 - [Reformat each changed file](https://www.jetbrains.com/help/idea/reformat-and-rearrange-code.html#reformat_file) using the .editorconfig settings of the project
 - Commit your changes directly from IntelliJ by pressing `Command` + `K` OR via the command `git commit -m "your commit mesage"`
   - Commits should be as atomic as possible
@@ -60,17 +60,16 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
 - Push your changes to the remote `origin` by pressing `Command` + `Shift` + `K` OR via the command `git push origin branch-type/branch-name`
 
 
-## 7. Create a Pull Request
+## 5. Create a Pull Request
 
 - By contributing your code, you agree to license your contribution under the terms of the
-  [Apache License, Version 2.0](https://github.com/hivemq/hivemq-hivemq-grafana-dashboardsent/blob/develop/LICENSE)
+  [Apache License, Version 2.0](https://github.com/hivemq/hivemq-grafana-dashboards/blob/master/LICENSE)
 - Go to your GitHub fork under https://github.com/yourgithubname/hivemq-grafana-dashboards.git
 - Go to the <i>Pull Requests</i> tab
 - Press the <i>New Pull Request</i> button
 - Choose your branch and click <i>Create Pull Request</i>
 - We will now try to review your submitted code as fast as possible
-- Furthermore, our CI will run tests against the changes
-- To address requested changes during code review or if you need to address failing CI tests, simply push your changes to your remote as described above
+- To address requested changes during code review, simply push your changes to your remote as described above
 - You may need to rebase your branch if you haven't worked on it for some time - To do so simply go to the <i>Git branch > upstream master > Rebase 'your-branch' onto 'upstream/master'</i> OR via the command `git rebase upstream/master` 
 - As soon as the Code Reviewer has approved your Pull Request Merge your PR by clicking <i>Rebase and Merge</i>
 
