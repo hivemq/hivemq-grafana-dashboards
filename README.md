@@ -49,5 +49,5 @@ Flux is supported since InfluxDB 1.7.
 ## How to Contribute
 
 - If you want to request a feature or report a bug,
-  please [create a GitHub Issue using one of the provided templates](https://github.com/hivemq/mqtt-cli/issues/new/choose)
+  please [create a GitHub Issue using one of the provided templates](https://github.com/hivemq/hivemq-grafana-dashboards/issues/new/choose)
 - If you want to make a contribution to the project, please have a look at the [contribution guide](CONTRIBUTING.md)
