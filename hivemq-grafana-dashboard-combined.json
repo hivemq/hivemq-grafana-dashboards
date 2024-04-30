@@ -8310,6 +8310,403 @@
           ],
           "title": "MQTT to MongoDB failed/s",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The number of MQTT to MongoDB messages that the extension's MessageConsumer receives.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 12,
+            "y": 69
+          },
+          "id": 117,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_consumer_incoming_count\", __name__!=\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_total_consumer_incoming_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_consumer_incoming_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mongodb\\.mqtt-to-mongodb(.+)consumer-incoming\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.mongodb.mqtt-to-mongodb.total.consumer-incoming.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MongoDB consumer-incoming/s",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to MongoDB messages that are in the progress of being forwarded to PostgreSQL.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 18,
+            "y": 69
+          },
+          "id": 118,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_total_in_progress_count_current\", __name__!~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mongodb\\.mqtt-to-mongodb(.+)in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.mongodb.mqtt-to-mongodb.total.in-progress.count.current\" and r[\"_measurement\"] !~ /com\\.hivemq\\.extensions\\.mongodb\\.mqtt-to-mongodb(.+)batches\\.in-progress\\.count\\.current/)\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MongoDB in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to MongoDB batches that are in the progress of being forwarded to MongoDB.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 0,
+            "y": 76
+          },
+          "id": 119,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_batches_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_total_batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_batches_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mongodb\\.mqtt-to-mongodb(.+)batches\\.in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.mongodb.mqtt-to-mongodb.total.batches.in-progress.count.current\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MongoDB batches in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "A histogram of the latency of all MQTT to MongoDB messages.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 6,
+            "y": 76
+          },
+          "id": 120,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "com_hivemq_extensions_mongodb_mqtt_to_mongodb_${Route}_latency * 1000",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{quantile}} ",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: \"hivemq\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.extensions.mongodb.mqtt-to-mongodb.${Route}.latency\")\n  |> filter(fn: (r) => r[\"_field\"] == \"p999\" or r[\"_field\"] == \"p99\" or r[\"_field\"] == \"p98\" or r[\"_field\"] == \"p95\" or r[\"_field\"] == \"p75\" or r[\"_field\"] == \"p50\")\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MongoDB ${Route} Latency",
+          "type": "timeseries"
         }
       ],
       "title": "HiveMQ Enterprise Extension for MongoDB",
@@ -8522,6 +8919,403 @@
           ],
           "title": "MQTT to MySQL failed/s",
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The number of MQTT to MySQL messages that the extension's MessageConsumer receives.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 12,
+            "y": 70
+          },
+          "id": 109,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_consumer_incoming_count\", __name__!=\"com_hivemq_extensions_mysql_mqtt_to_mysql_total_consumer_incoming_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_consumer_incoming_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)consumer-incoming\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.mysql.mqtt-to-mysql.total.consumer-incoming.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MySQL consumer-incoming/s",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to MySQL messages that are in the progress of being forwarded to PostgreSQL.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 18,
+            "y": 70
+          },
+          "id": 114,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mysql_mqtt_to_mysql_total_in_progress_count_current\", __name__!~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.mysql.mqtt-to-mysql.total.in-progress.count.current\" and r[\"_measurement\"] !~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)batches\\.in-progress\\.count\\.current/)\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MySQL in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to MySQL batches that are in the progress of being forwarded to MySQL.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 0,
+            "y": 77
+          },
+          "id": 115,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_batches_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mysql_mqtt_to_mysql_total_batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mysql_mqtt_to_mysql_(.+)_batches_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.mysql\\.mqtt-to-mysql(.+)batches\\.in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.mysql.mqtt-to-mysql.total.batches.in-progress.count.current\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MySQL batches in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "A histogram of the latency of all MQTT to MySQL messages.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 6,
+            "y": 77
+          },
+          "id": 116,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "com_hivemq_extensions_mysql_mqtt_to_mysql_${Route}_latency * 1000",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{quantile}} ",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: \"hivemq\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.extensions.mysql.mqtt-to-mysql.${Route}.latency\")\n  |> filter(fn: (r) => r[\"_field\"] == \"p999\" or r[\"_field\"] == \"p99\" or r[\"_field\"] == \"p98\" or r[\"_field\"] == \"p95\" or r[\"_field\"] == \"p75\" or r[\"_field\"] == \"p50\")\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to MySQL ${Route} Latency",
+          "type": "timeseries"
         }
       ],
       "title": "HiveMQ Enterprise Extension for MySQL",
@@ -8593,7 +9387,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 71
+            "y": 85
           },
           "id": 48,
           "interval": "${intervalSeconds}s",
@@ -8619,7 +9413,7 @@
               "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_success_count\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_success_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_success_count\")[${intervalSeconds}s:${intervalSeconds}s])",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{instance}} {{route}}",
+              "legendFormat": "{{job}} {{route}}",
               "range": true,
               "refId": "A"
             },
@@ -8692,7 +9486,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 71
+            "y": 85
           },
           "id": 49,
           "interval": "${intervalSeconds}s",
@@ -8715,10 +9509,10 @@
                 "uid": "${Prometheus}"
               },
               "editorMode": "code",
-              "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_failed_count\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_failed_count\"}, \"interface\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_failed_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+              "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_failed_count\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_failed_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_failed_count\")[${intervalSeconds}s:${intervalSeconds}s])",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{instance}} {{route}}",
+              "legendFormat": "{{job}} {{route}}",
               "range": true,
               "refId": "A"
             },
@@ -8733,6 +9527,403 @@
             }
           ],
           "title": "MQTT to PostgreSQL failed/s",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The number of MQTT to PostgreSQL messages that the extension's MessageConsumer receives.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 12,
+            "y": 85
+          },
+          "id": 113,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "rate(label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_consumer_incoming_count\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_consumer_incoming_count\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_consumer_incoming_count\")[${intervalSeconds}s:${intervalSeconds}s])",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: v.defaultBucket)\n    |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n    |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.postgresql\\.mqtt-to-postgresql(.+)consumer-incoming\\.count/ and r[\"_measurement\"] != \"com.hivemq.extensions.postgresql.mqtt-to-postgresql.total.consumer-incoming.count\")\n    |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])\n    |> aggregateWindow(every: ${intervalSeconds}s, fn: max)\n    |> map(fn: (r) => ({ r with _value: r._value / ${intervalSeconds}.0 }))\n    |> difference(nonNegative: true)",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to PostgreSQL consumer-incoming/s",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to PostgreSQL messages that are in the progress of being forwarded to PostgreSQL.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 18,
+            "y": 85
+          },
+          "id": 110,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_in_progress_count_current\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_in_progress_count_current\", __name__!~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.postgresql\\.mqtt-to-postgresql(.+)in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.postgresql.mqtt-to-postgresql.total.in-progress.count.current\" and r[\"_measurement\"] !~ /com\\.hivemq\\.extensions\\.postgresql\\.mqtt-to-postgresql(.+)batches\\.in-progress\\.count\\.current/)\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to PostgreSQL in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "The current number of MQTT to PostgreSQL batches that are in the progress of being forwarded to PostgreSQL.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 0,
+            "y": 92
+          },
+          "id": 111,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_batches_in_progress_count_current\", __name__!=\"com_hivemq_extensions_postgresql_mqtt_to_postgresql_total_batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_postgresql_mqtt_to_postgresql_(.+)_batches_in_progress_count_current\")",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{route}}",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "\nfrom(bucket: v.defaultBucket)\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] =~ /com\\.hivemq\\.extensions\\.postgresql\\.mqtt-to-postgresql(.+)batches\\.in-progress\\.count\\.current/ and r[\"_measurement\"] != \"com.hivemq.extensions.postgresql.mqtt-to-postgresql.total.batches.in-progress.count.current\")\n  |> aggregateWindow(every: ${intervalSeconds}s, fn: mean)\n  |> drop(columns: [\"_start\", \"_stop\", \"metricName\", \"_field\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to PostgreSQL batches in progress",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Mixed --"
+          },
+          "description": "A histogram of the latency of all MQTT to PostgreSQL messages.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": []
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 6,
+            "y": 92
+          },
+          "id": 112,
+          "interval": "${intervalSeconds}s",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": false
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${Prometheus}"
+              },
+              "editorMode": "code",
+              "expr": "com_hivemq_extensions_postgresql_mqtt_to_postgresql_${Route}_latency",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{job}} {{quantile}} ",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${InfluxDB}"
+              },
+              "hide": false,
+              "query": "from(bucket: \"hivemq\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"com.hivemq.extensions.postgresql.mqtt-to-postgresql.${Route}.latency\")\n  |> filter(fn: (r) => r[\"_field\"] == \"p999\" or r[\"_field\"] == \"p99\" or r[\"_field\"] == \"p98\" or r[\"_field\"] == \"p95\" or r[\"_field\"] == \"p75\" or r[\"_field\"] == \"p50\")\n  |> drop(columns: [\"_start\", \"_stop\", \"_measurement\", \"metricName\"])",
+              "refId": "B"
+            }
+          ],
+          "title": "MQTT to PostgreSQL ${Route} Latency",
           "type": "timeseries"
         }
       ],
@@ -8953,7 +10144,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
@@ -9034,6 +10225,29 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "total",
+          "value": "total"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Route",
+        "multi": false,
+        "name": "Route",
+        "options": [
+          {
+            "selected": true,
+            "text": "total",
+            "value": "total"
+          }
+        ],
+        "query": "total",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -9044,6 +10258,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "HiveMQ Platform (Prometheus + InfluxDB)",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
