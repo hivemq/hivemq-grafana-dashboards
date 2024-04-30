@@ -39,7 +39,8 @@ Flux is supported since InfluxDB 1.7.
 
 ### Getting Started with the Grafana Dashboard for InfluxDB
 
-- [Configure](https://grafana.com/docs/grafana/latest/datasources/influxdb/) your InfluxDB data source in Grafana.
+- [Configure](https://grafana.com/docs/grafana/latest/datasources/influxdb/) your InfluxDB data source in Grafana. Make
+  sure to configure Flux as the InfluxDB query language for the data source.
 - [Download](https://github.com/hivemq/hivemq-grafana-dashboards/releases/download/1.0/hivemq-grafana-dashboard-influxdb-1.0.json)
   the dashboard as a json file.
 - [Import](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/) the downloaded json
