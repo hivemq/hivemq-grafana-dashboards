@@ -8489,7 +8489,7 @@
                 "uid": "${Prometheus}"
               },
               "editorMode": "code",
-              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_total_in_progress_count_current\", __name__!~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)batches_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\")",
+              "expr": "label_replace({__name__=~\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\", __name__!=\"com_hivemq_extensions_mongodb_mqtt_to_mongodb_total_in_progress_count_current\"}, \"route\", \"$1\", \"__name__\", \"com_hivemq_extensions_mongodb_mqtt_to_mongodb_(.+)_in_progress_count_current\")",
               "hide": false,
               "instant": false,
               "legendFormat": "{{job}} {{route}}",
@@ -8565,7 +8565,7 @@
           "gridPos": {
             "h": 7,
             "w": 6,
-            "x": 6,
+            "x": 0,
             "y": 76
           },
           "id": 120,
@@ -9288,7 +9288,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 85
+            "y": 71
           },
           "id": 48,
           "interval": "${intervalSeconds}s",
@@ -9387,7 +9387,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 85
+            "y": 71
           },
           "id": 49,
           "interval": "${intervalSeconds}s",
@@ -9486,7 +9486,7 @@
             "h": 7,
             "w": 6,
             "x": 12,
-            "y": 85
+            "y": 71
           },
           "id": 113,
           "interval": "${intervalSeconds}s",
@@ -9585,7 +9585,7 @@
             "h": 7,
             "w": 6,
             "x": 18,
-            "y": 85
+            "y": 71
           },
           "id": 110,
           "interval": "${intervalSeconds}s",
@@ -9684,7 +9684,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 92
+            "y": 78
           },
           "id": 111,
           "interval": "${intervalSeconds}s",
@@ -9784,7 +9784,7 @@
             "h": 7,
             "w": 6,
             "x": 6,
-            "y": 92
+            "y": 78
           },
           "id": 112,
           "interval": "${intervalSeconds}s",
@@ -9807,7 +9807,7 @@
                 "uid": "${Prometheus}"
               },
               "editorMode": "code",
-              "expr": "com_hivemq_extensions_postgresql_mqtt_to_postgresql_${Route}_latency",
+              "expr": "com_hivemq_extensions_postgresql_mqtt_to_postgresql_${Route}_latency * 1000",
               "hide": false,
               "instant": false,
               "legendFormat": "{{job}} {{quantile}} ",

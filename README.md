@@ -30,10 +30,9 @@ We offer a dedicated dashboard for Prometheus using
   file in Grafana.
 - Select your desired Prometheus data source in the top left corner of the Grafana Dashboard.
 
-## InfluxDB
+## InfluxDB 2.X
 
 We offer a dedicated dashboard for InfluxDB using [Flux](https://docs.influxdata.com/influxdb/cloud/query-data/flux/).
-Flux is supported since InfluxDB 1.7.
 
 ![influxdb-example.png](img%2Finfluxdb-example.png)
 
