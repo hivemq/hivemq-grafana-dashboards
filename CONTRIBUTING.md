@@ -52,7 +52,7 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
   - Commit messages should describe the changes clearly
   - Commit messages should start with a capital letter for consistency
   - Commit messages should avoid exceeding the line length limit,
-  - Instead use multiple lines, each describing one specific change
+  - Instead, use multiple lines, each describing one specific change
 - Push your changes to the remote `origin` by pressing `Command` + `Shift` + `K` OR via the command `git push origin branch-type/branch-name`
 
 
@@ -69,6 +69,6 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
 - You may need to rebase your branch if you haven't worked on it for some time - To do so simply go to the <i>Git branch > upstream master > Rebase 'your-branch' onto 'upstream/master'</i> OR via the command `git rebase upstream/master` 
 - As soon as the Code Reviewer has approved your Pull Request Merge your PR by clicking <i>Rebase and Merge</i>
 
-## 🚀 Thank you for taking the time to contribute to HiveMQ Platform Grafana Dashboards!  🚀
+## 🚀 Thank you for taking the time to contribute to HiveMQ Platform Grafana Dashboards! 🚀
 
 We truly appreciate and value your time and work. ❤️
