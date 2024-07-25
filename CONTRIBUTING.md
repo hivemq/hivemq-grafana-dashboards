@@ -1,8 +1,10 @@
-# Contributing to hivemq-grafana-dashboards
+# Contributing
 
-Welcome to the HiveMQ Community! Glad to see your interest in contributing to hivemq-grafana-dashboards.
-For some general information on how the HiveMQ Community is organized and how contributions will be accepted please have a look at 
-our [HiveMQ Community Repo](https://github.com/hivemq/hivemq-community). 
+Welcome to the HiveMQ Community!
+Glad to see your interest in contributing to HiveMQ Platform Grafana Dashboards.
+Please checkout our [Contribution Guide](https://github.com/hivemq/hivemq-community/blob/master/CONTRIBUTING.adoc) to make sure your contribution will be accepted by the HiveMQ team.
+
+For information on how the HiveMQ Community is organized and how contributions will be accepted please have a look at our [HiveMQ Community Repo](https://github.com/hivemq/hivemq-community).
 
 ## Prerequisites
 
@@ -10,12 +12,6 @@ We recommend to develop your changes by using [IntelliJ IDEA](https://www.jetbra
 Therefore, the following guide will focus on creating your changes using IntelliJ. 
 
 Furthermore, the following is needed to make your development efforts as smoothly as possible:
-- Fill out and sign the [Contributor License Agreement](https://www.hivemq.com/downloads/Contributor_License_Agreement.pdf)
-  - Send the signed agreement  to (contributing@hivemq.com) with the subject `CLA for Project: hivemq-grafana-dashboards`.
-  - Please read this document carefully before signing it and keep a copy for your own records
-  - Once we've received your signed CLA, you will be added to the list of contributors and our HiveMQ Development Team will review your contributions
-  - In case the rights to all intellectual property created by you are maintained by your employer, 
-  - including your work on HiveMQ Open Source Projects, you must ensure you have retained all rights to grant the license, or that your employer has agreed to a separate [Corporate CLA](https://www.hivemq.com/downloads/Corporate_Contributor_License_Agreement.pdf)
 - A (local) Grafana installation to test your dashboard. Follow the [Grafana Installation Guide.](https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
 - A (local) Prometheus. Follow the [Prometheus Installation Guide.](https://prometheus.io/docs/prometheus/latest/installation/)
 - A (local) InfluxDB. Follow the [InfluxDB Installation Guide.](https://docs.influxdata.com/influxdb/v2/install/)
@@ -56,7 +52,7 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
   - Commit messages should describe the changes clearly
   - Commit messages should start with a capital letter for consistency
   - Commit messages should avoid exceeding the line length limit,
-  - Instead use multiple lines, each describing one specific change
+  - Instead, use multiple lines, each describing one specific change
 - Push your changes to the remote `origin` by pressing `Command` + `Shift` + `K` OR via the command `git push origin branch-type/branch-name`
 
 
@@ -73,9 +69,6 @@ Use this file to develop your contribution for Prometheus and InfluxDB.
 - You may need to rebase your branch if you haven't worked on it for some time - To do so simply go to the <i>Git branch > upstream master > Rebase 'your-branch' onto 'upstream/master'</i> OR via the command `git rebase upstream/master` 
 - As soon as the Code Reviewer has approved your Pull Request Merge your PR by clicking <i>Rebase and Merge</i>
 
-## 🚀 Thank you for taking the time to contribute to hivemq-grafana-dashboards!  🚀
+## 🚀 Thank you for taking the time to contribute to HiveMQ Platform Grafana Dashboards! 🚀
 
 We truly appreciate and value your time and work. ❤️
-
-
-
