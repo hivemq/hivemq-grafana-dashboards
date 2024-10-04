@@ -1,7 +1,6 @@
 # HiveMQ Platform Grafana Dashboards
 
 ![GitHub Release](https://img.shields.io/github/release/hivemq/hivemq-grafana-dashboards?style=flat)
-![version](https://img.shields.io/badge/version-1.0-green)
 
 This repository offers Grafana Dashboards to Monitor the HiveMQ Platform.
 For simple conversions and better understandability all rates are displayed per second.
