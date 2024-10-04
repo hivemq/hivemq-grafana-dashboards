@@ -24,8 +24,8 @@ We offer a dedicated dashboard for Prometheus using
 
 - [Configure](https://grafana.com/docs/grafana/latest/datasources/prometheus/configure-prometheus-data-source/) your
   Prometheus data source.
-- [Download](https://github.com/hivemq/hivemq-grafana-dashboards/releases/download/1.0/hivemq-grafana-dashboard-prometheus-1.0.json)
-  the dashboard as a json file.
+- [Download](https://github.com/hivemq/hivemq-grafana-dashboards/releases/latest)
+  the latest `hivemq-grafana-dashboard-prometheus-X.json` dashboard file.
 - [Import](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/) the downloaded json
   file in Grafana.
 - Select your desired Prometheus data source in the top left corner of the Grafana Dashboard.
@@ -40,8 +40,8 @@ We offer a dedicated dashboard for InfluxDB using [Flux](https://docs.influxdata
 
 - [Configure](https://grafana.com/docs/grafana/latest/datasources/influxdb/) your InfluxDB data source in Grafana. Make
   sure to configure Flux as the InfluxDB query language for the data source.
-- [Download](https://github.com/hivemq/hivemq-grafana-dashboards/releases/download/1.0/hivemq-grafana-dashboard-influxdb-1.0.json)
-  the dashboard as a json file.
+- [Download](https://github.com/hivemq/hivemq-grafana-dashboards/releases/latest)
+  the latest `hivemq-grafana-dashboard-influxdb-X.json` dashboard file.
 - [Import](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/) the downloaded json
   file in Grafana.
 - Select your desired InfluxDB data source in the top left corner of the Grafana Dashboard.
