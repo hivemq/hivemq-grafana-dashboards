@@ -10476,6 +10476,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "HiveMQ Platform (Prometheus + InfluxDB)",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
