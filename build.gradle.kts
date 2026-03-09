@@ -20,7 +20,7 @@ val createDashboards by tasks.registering {
     dependsOn(createInfluxDbDashboard)
 }
 
-val combinedDashboardFile = File("hivemq-grafana-dashboard-combined.json")
+val combinedDashboardFile = layout.projectDirectory.file("hivemq-grafana-dashboard-combined.json")
 
 val createPrometheusDashboard by tasks.registering {
     group = "dashboard"
@@ -28,9 +28,10 @@ val createPrometheusDashboard by tasks.registering {
     val outputFile = layout.buildDirectory.dir("dashboards").get()
         .file("hivemq-grafana-dashboard-prometheus-${project.version}.json")
     outputs.file(outputFile)
+    val projectVersion = project.version.toString()
     doLast {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        val dashboard = gson.fromJson(combinedDashboardFile.readText(), JsonObject::class.java)
+        val dashboard = gson.fromJson(combinedDashboardFile.asFile.readText(), JsonObject::class.java)
 
         // remove influxdb queries
         // remove prometheus queries
@@ -60,7 +61,7 @@ val createPrometheusDashboard by tasks.registering {
         dashboard.asMap()["title"] = JsonPrimitive("HiveMQ Platform (Prometheus)")
 
         // set the version
-        dashboard.asMap()["version"] = JsonPrimitive(project.version.toString())
+        dashboard.asMap()["version"] = JsonPrimitive(projectVersion)
 
         outputFile.asFile.writeText(gson.toJson(dashboard))
     }
@@ -72,9 +73,10 @@ val createInfluxDbDashboard by tasks.registering {
         layout.buildDirectory.dir("dashboards").get().file("hivemq-grafana-dashboard-influxdb-${project.version}.json")
     inputs.file(combinedDashboardFile)
     outputs.file(outputFile)
+    val projectVersion = project.version.toString()
     doLast {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        val dashboard = gson.fromJson(combinedDashboardFile.readText(), JsonObject::class.java)
+        val dashboard = gson.fromJson(combinedDashboardFile.asFile.readText(), JsonObject::class.java)
 
         // remove prometheus queries
         dashboard["panels"].asJsonArray.flatMap {
@@ -103,7 +105,7 @@ val createInfluxDbDashboard by tasks.registering {
         dashboard.asMap()["title"] = JsonPrimitive("HiveMQ Platform (InfluxDB)")
 
         // set the version
-        dashboard.asMap()["version"] = JsonPrimitive(project.version.toString())
+        dashboard.asMap()["version"] = JsonPrimitive(projectVersion)
 
         outputFile.asFile.writeText(gson.toJson(dashboard))
     }
