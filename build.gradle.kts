@@ -4,7 +4,7 @@ import com.google.gson.JsonPrimitive
 
 buildscript {
     dependencies {
-        classpath("com.google.code.gson:gson:2.10.1")
+        classpath("com.google.code.gson:gson:2.13.2")
     }
 }
 
@@ -110,14 +110,14 @@ val createInfluxDbDashboard by tasks.registering {
 }
 
 githubRelease {
-    token(System.getenv("githubToken"))
-    releaseAssets(
+    authorization.set(System.getenv("githubToken"))
+    releaseAssets.from(
         createInfluxDbDashboard,
         createPrometheusDashboard
     )
-    allowUploadToExisting(true)
-    releaseName(project.version.toString())
-    tagName(project.version.toString())
-    targetCommitish("master")
-    owner("hivemq")
+    allowUploadToExisting.set(true)
+    releaseName.set(project.version.toString())
+    tagName.set(project.version.toString())
+    targetCommitish.set("master")
+    owner.set("hivemq")
 }
