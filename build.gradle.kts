@@ -112,7 +112,7 @@ val createInfluxDbDashboard by tasks.registering {
 }
 
 githubRelease {
-    authorization.set(System.getenv("githubToken"))
+    authorization.set("Bearer ${System.getenv("githubToken")}")
     releaseAssets.from(
         createInfluxDbDashboard,
         createPrometheusDashboard
