@@ -54,7 +54,8 @@ val createPrometheusDashboard by tasks.registering {
         // remove influxdb datasource variable
         val datasourceVariables = dashboard["templating"].asJsonObject["list"]
         datasourceVariables.asJsonArray.asList().removeIf {
-            it.asJsonObject["query"].asString == "influxdb"
+            val query = it.asJsonObject["query"]
+            query.isJsonPrimitive && query.asString == "influxdb"
         }
 
         // rename the dashboard
@@ -98,7 +99,8 @@ val createInfluxDbDashboard by tasks.registering {
         // remove prometheus datasource variable
         val datasourceVariables = dashboard["templating"].asJsonObject["list"]
         datasourceVariables.asJsonArray.asList().removeIf {
-            it.asJsonObject["query"].asString == "prometheus"
+            val query = it.asJsonObject["query"]
+            query.isJsonPrimitive && query.asString == "prometheus"
         }
 
         // rename the dashboard
