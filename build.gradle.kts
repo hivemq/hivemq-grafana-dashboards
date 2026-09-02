@@ -30,7 +30,7 @@ val createPrometheusDashboard by tasks.registering {
     outputs.file(outputFile)
     val projectVersion = project.version.toString()
     doLast {
-        val gson = GsonBuilder().setPrettyPrinting().create()
+        val gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
         val dashboard = gson.fromJson(combinedDashboardFile.asFile.readText(), JsonObject::class.java)
 
         // remove influxdb queries
@@ -64,7 +64,7 @@ val createPrometheusDashboard by tasks.registering {
         // set the version
         dashboard.asMap()["version"] = JsonPrimitive(projectVersion)
 
-        outputFile.asFile.writeText(gson.toJson(dashboard))
+        outputFile.asFile.writeText(gson.toJson(dashboard) + "\n")
     }
 }
 
@@ -76,7 +76,7 @@ val createInfluxDbDashboard by tasks.registering {
     outputs.file(outputFile)
     val projectVersion = project.version.toString()
     doLast {
-        val gson = GsonBuilder().setPrettyPrinting().create()
+        val gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
         val dashboard = gson.fromJson(combinedDashboardFile.asFile.readText(), JsonObject::class.java)
 
         // remove prometheus queries
@@ -109,7 +109,7 @@ val createInfluxDbDashboard by tasks.registering {
         // set the version
         dashboard.asMap()["version"] = JsonPrimitive(projectVersion)
 
-        outputFile.asFile.writeText(gson.toJson(dashboard))
+        outputFile.asFile.writeText(gson.toJson(dashboard) + "\n")
     }
 }
 
