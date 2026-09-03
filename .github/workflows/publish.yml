@@ -4,17 +4,192 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
+    inputs:
+      force_downstream_prs:
+        description: Create the downstream PRs even if the release for the current version already exists
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      released: ${{ steps.tag.outputs.released }}
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Read version
+        id: version
+        run: |
+          VERSION=$(grep -E '^version=' gradle.properties | cut -d= -f2)
+          if [[ -z "${VERSION}" ]]; then
+            echo "::error::Could not read the version from gradle.properties"
+            exit 1
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+      - name: Check dashboard version is aligned
+        run: |
+          JSON_VERSION=$(jq -r '.version' hivemq-grafana-dashboard-combined.json)
+          if [[ "${JSON_VERSION}" != "${{ steps.version.outputs.version }}" ]]; then
+            echo "::error::The version field in hivemq-grafana-dashboard-combined.json (${JSON_VERSION}) must match the version in gradle.properties (${{ steps.version.outputs.version }})"
+            exit 1
+          fi
+      - name: Check whether the release tag already exists
+        id: tag
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/${{ steps.version.outputs.version }}" > /dev/null; then
+            echo "Tag ${{ steps.version.outputs.version }} already exists, skipping the release to keep the published assets unchanged"
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "released=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish
+        if: steps.tag.outputs.released == 'true'
         run: ./gradlew githubRelease
         env:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ASSET_COUNT=$(gh release view "${{ steps.version.outputs.version }}" --repo "${{ github.repository }}" --json assets --jq '.assets | length' || true)
+          if [[ "${ASSET_COUNT}" != "2" ]]; then
+            echo "::error::Release ${{ steps.version.outputs.version }} is incomplete, expected 2 assets but found ${ASSET_COUNT:-none}"
+            exit 1
+          fi
+
+  helm-charts-pr:
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.released == 'true' || inputs.force_downstream_prs
+    env:
+      VERSION: ${{ needs.release.outputs.version }}
+      BRANCH: grafana-dashboard-v${{ needs.release.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Render the Prometheus dashboard
+        run: ./gradlew createPrometheusDashboard
+      - name: Checkout hivemq/helm-charts
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: hivemq/helm-charts
+          token: ${{ secrets.JENKINS_GITHUB_TOKEN }}
+          path: helm-charts
+      - name: Update the dashboard file
+        id: update
+        run: |
+          cp "build/dashboards/hivemq-grafana-dashboard-prometheus-${VERSION}.json" helm-charts/charts/hivemq-platform/files/grafana-dashboard.json
+          cd helm-charts
+          if git diff --quiet; then
+            echo "The helm-charts dashboard is already up-to-date"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Read Helm version
+        if: steps.update.outputs.changed == 'true'
+        id: helm-version
+        run: echo "version=$(cat helm-charts/.helm-version)" >> "$GITHUB_OUTPUT"
+      - name: Set up Helm
+        if: steps.update.outputs.changed == 'true'
+        uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5
+        with:
+          version: ${{ steps.helm-version.outputs.version }}
+      - name: Install helm-unittest
+        if: steps.update.outputs.changed == 'true'
+        run: helm plugin install https://github.com/helm-unittest/helm-unittest.git --verify=false
+      - name: Update the test snapshot
+        if: steps.update.outputs.changed == 'true'
+        working-directory: helm-charts
+        run: |
+          helm unittest ./charts/hivemq-platform -f './tests/**/*_test.yaml' -u
+          helm unittest ./charts/hivemq-platform -f './tests/**/*_test.yaml'
+      - name: Create the pull request
+        if: steps.update.outputs.changed == 'true'
+        working-directory: helm-charts
+        env:
+          GH_TOKEN: ${{ secrets.JENKINS_GITHUB_TOKEN }}
+        run: |
+          git config user.name "${{ secrets.JENKINS_GITHUB_USERNAME }}"
+          git config user.email "${{ secrets.JENKINS_GITHUB_USERNAME }}@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add charts/hivemq-platform/files/grafana-dashboard.json charts/hivemq-platform/tests
+          git commit -m "Update Grafana dashboard to version ${VERSION}"
+          git push --force origin "${BRANCH}"
+          if [[ -z "$(gh pr list --repo hivemq/helm-charts --head "${BRANCH}" --state open --json number --jq '.[].number')" ]]; then
+            gh pr create --repo hivemq/helm-charts --base master --head "${BRANCH}" --draft \
+              --title "Update Grafana dashboard to version ${VERSION}" \
+              --body "## Summary
+
+          - Updates the HiveMQ Platform Grafana dashboard to version ${VERSION}, rendered from [hivemq-grafana-dashboards release ${VERSION}](https://github.com/hivemq/hivemq-grafana-dashboards/releases/tag/${VERSION})
+          - Updates the Grafana dashboard ConfigMap test snapshot
+          - The chart version bump is not included on purpose, it follows with the next chart release
+
+          This PR was created automatically by the hivemq-grafana-dashboards publish workflow."
+          else
+            echo "Pull request for ${BRANCH} is already open, the branch was updated"
+          fi
+
+  operator-pr:
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.released == 'true' || inputs.force_downstream_prs
+    env:
+      VERSION: ${{ needs.release.outputs.version }}
+      BRANCH: grafana-dashboard-v${{ needs.release.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Render the Prometheus dashboard
+        run: ./gradlew createPrometheusDashboard
+      - name: Checkout hivemq/hivemq-platform-operator
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: hivemq/hivemq-platform-operator
+          token: ${{ secrets.JENKINS_GITHUB_TOKEN }}
+          path: hivemq-platform-operator
+      - name: Update the dashboard file
+        id: update
+        run: |
+          cp "build/dashboards/hivemq-grafana-dashboard-prometheus-${VERSION}.json" hivemq-platform-operator/src/test/scripts/helm/prometheus/grafana-dashboard-hivemq.json
+          cd hivemq-platform-operator
+          if git diff --quiet; then
+            echo "The operator dashboard is already up-to-date"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Create the pull request
+        if: steps.update.outputs.changed == 'true'
+        working-directory: hivemq-platform-operator
+        env:
+          GH_TOKEN: ${{ secrets.JENKINS_GITHUB_TOKEN }}
+        run: |
+          git config user.name "${{ secrets.JENKINS_GITHUB_USERNAME }}"
+          git config user.email "${{ secrets.JENKINS_GITHUB_USERNAME }}@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add src/test/scripts/helm/prometheus/grafana-dashboard-hivemq.json
+          git commit -m "Update Grafana dashboard to version ${VERSION}"
+          git push --force origin "${BRANCH}"
+          if [[ -z "$(gh pr list --repo hivemq/hivemq-platform-operator --head "${BRANCH}" --state open --json number --jq '.[].number')" ]]; then
+            gh pr create --repo hivemq/hivemq-platform-operator --base master --head "${BRANCH}" --draft \
+              --title "Update Grafana dashboard to version ${VERSION}" \
+              --body "## Summary
+
+          - Updates the HiveMQ Platform Grafana dashboard used by the Prometheus test scripts to version ${VERSION}, rendered from [hivemq-grafana-dashboards release ${VERSION}](https://github.com/hivemq/hivemq-grafana-dashboards/releases/tag/${VERSION})
+
+          This PR was created automatically by the hivemq-grafana-dashboards publish workflow."
+          else
+            echo "Pull request for ${BRANCH} is already open, the branch was updated"
+          fi
