@@ -1,0 +1,73 @@
+name: Verify
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-dashboard-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+      - name: Detect dashboard changes
+        id: changes
+        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
+        with:
+          filters: |
+            dashboard:
+              - hivemq-grafana-dashboard-combined.json
+              - gradle.properties
+              - build.gradle.kts
+      - name: Checkout base branch
+        if: steps.changes.outputs.dashboard == 'true'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+      - name: Check dashboard version is aligned and bumped
+        if: steps.changes.outputs.dashboard == 'true'
+        run: |
+          PROPS_VERSION=$(grep -E '^version=' gradle.properties | cut -d= -f2)
+          JSON_VERSION=$(jq -r '.version' hivemq-grafana-dashboard-combined.json)
+          if [[ ! "${PROPS_VERSION}" =~ ^[1-9][0-9]*$ ]]; then
+            echo "::error::The version in gradle.properties must be a positive integer, found '${PROPS_VERSION}'"
+            exit 1
+          fi
+          if [[ "${JSON_VERSION}" != "${PROPS_VERSION}" ]]; then
+            echo "::error::The version field in hivemq-grafana-dashboard-combined.json (${JSON_VERSION}) must match the version in gradle.properties (${PROPS_VERSION})"
+            exit 1
+          fi
+          ./gradlew createDashboards
+          (cd base && ./gradlew createDashboards)
+          CHANGED=false
+          for VARIANT in prometheus influxdb; do
+            jq -S 'del(.version)' build/dashboards/hivemq-grafana-dashboard-"${VARIANT}"-*.json > "/tmp/pr-${VARIANT}.json"
+            jq -S 'del(.version)' base/build/dashboards/hivemq-grafana-dashboard-"${VARIANT}"-*.json > "/tmp/base-${VARIANT}.json"
+            if ! diff -q "/tmp/base-${VARIANT}.json" "/tmp/pr-${VARIANT}.json" > /dev/null; then
+              echo "The rendered ${VARIANT} dashboard changed"
+              CHANGED=true
+            fi
+          done
+          if [[ "${CHANGED}" == "false" ]]; then
+            echo "Rendered dashboards unchanged (version ${PROPS_VERSION})"
+            exit 0
+          fi
+          BASE_VERSION=$(grep -E '^version=' base/gradle.properties | cut -d= -f2)
+          if [[ ! "${BASE_VERSION}" =~ ^[1-9][0-9]*$ ]]; then
+            echo "::error::The version in the base branch gradle.properties is not a positive integer, found '${BASE_VERSION}'"
+            exit 1
+          fi
+          if [[ "${PROPS_VERSION}" -le "${BASE_VERSION}" ]]; then
+            echo "::error::The rendered dashboards changed but the version in gradle.properties must be bumped to a higher version (base branch has ${BASE_VERSION}, this PR has ${PROPS_VERSION})"
+            exit 1
+          fi
+          echo "Rendered dashboards changed, version bumped from ${BASE_VERSION} to ${PROPS_VERSION}"
